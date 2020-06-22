@@ -1,0 +1,14 @@
+main {
+    display: flex;
+}
+
+app-users {
+    flex: 1;
+}
+
+app-posts {
+    flex: 1;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    height: 459.83px;
+    overflow: auto;
+}

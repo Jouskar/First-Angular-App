@@ -1,0 +1,12 @@
+<h2>Kullanıcı Listesi
+    <button type="submit" (click)="getAllPosts()" id="userGetAll">Tüm Postları Görüntüle</button>
+</h2>
+
+<table>
+    <tr *ngFor="let user of users">
+        <td>{{user.name}}</td>
+        <td>
+            <button type="submit" (click)="getPostsById(user)" class="userGet">Postları Görüntüle</button>
+        </td>
+    </tr>
+</table>

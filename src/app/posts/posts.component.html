@@ -1,0 +1,8 @@
+<h2>Postlar</h2>
+
+<div *ngFor="let post of posts">
+    <button class="accordion" [class.active]="isClicked" (click)="activatePosts()">{{ post.title }}</button>
+    <div class="panel" [style.maxHeight]="maxHeight">
+        <p>{{ post.body }}</p>
+    </div>
+</div>
