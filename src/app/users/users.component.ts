@@ -13,24 +13,21 @@ export class UsersComponent {
   users: User[];
   posts: Post[];
 
+  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
   constructor(private postsService: PostsService, private usersService:UsersService) { }
 
   ngOnInit(): void {
     this.getUsers();
+    this.postsService.createData(this.apiUrl);
   }
 
   getAllPosts(): void {
-    this.postsService.getAllPosts()
-        .subscribe(posts=> {
-          this.posts = posts;
-        });
+    this.postsService.getPostObs().subscribe(posts => this.posts = posts);
   }
 
   getPostsById(user:User): void {
-    this.postsService.getPostsById(user.id)
-        .subscribe(posts=> {
-          this.posts = posts;
-        });
+    this.postsService.getPostsById();
   }
 
   getUsers():void {
