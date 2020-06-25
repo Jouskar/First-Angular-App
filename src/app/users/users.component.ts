@@ -12,22 +12,29 @@ import { Post } from "../post";
 export class UsersComponent {
   users: User[];
   posts: Post[];
+  msg: string;
 
-  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
   constructor(private postsService: PostsService, private usersService:UsersService) { }
 
   ngOnInit(): void {
     this.getUsers();
-    this.postsService.createData(this.apiUrl);
+    
+    this.postsService.currentMsg.subscribe(msg => this.msg = msg);
+    console.log(this.msg);
   }
 
+  changeMsg(): void {
+    this.postsService.changeMsg("deneme yeni");
+    console.log(this.msg);
+  }
   getAllPosts(): void {
-    this.postsService.getPostObs().subscribe(posts => this.posts = posts);
+    //this.postsService.getPostObs().subscribe(posts => this.posts = posts);
+    this.postsService.createData();
   }
 
-  getPostsById(user:User): void {
-    this.postsService.getPostsById();
+  getPostsById(userId:number): void {
+    this.postsService.createDataById(userId);
   }
 
   getUsers():void {

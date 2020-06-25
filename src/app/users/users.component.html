@@ -6,7 +6,7 @@
     <tr *ngFor="let user of users">
         <td>{{user.name}}</td>
         <td>
-            <button type="submit" (click)="getPostsById(user)" class="userGet">Postları Görüntüle</button>
+            <button type="submit" (click)="getPostsById(user.id)" class="userGet">Postları Görüntüle</button>
         </td>
     </tr>
 </table>

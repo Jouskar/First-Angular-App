@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Post } from "../post";
 import { UsersComponent } from "../users/users.component";
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-posts',
@@ -11,20 +12,31 @@ import { UsersComponent } from "../users/users.component";
 export class PostsComponent{
   
   isClicked: boolean;
+  activePosts: number[] = [0];
   posts: Post[];
+  msg:string;
 
-  constructor(private usersComponent: UsersComponent) {  }
+  constructor(private usersComponent: UsersComponent, private postsService: PostsService) {  }
 
   ngOnInit(): void {
-    this.posts = this.usersComponent.posts;
+    this.postsService.getPostObs().subscribe(posts => this.posts = posts);
     this.isClicked = false;
-  }
+    this.postsService.currentMsg.subscribe(msg => this.msg = msg);  }
 
-  activatePosts(): void {
-    this.isClicked = !this.isClicked;
-  }
+  activatePosts(postId: number): void {
+    let postIndex = this.activePosts.indexOf(postId);
+    if (postIndex != -1) {
+      delete this.activePosts[postIndex];
+    }
 
-  maxHeight: string = "null";
+    else {
+      this.activePosts.push(postId);
+    }
+  }
     
-
+  setMaxHeight(postId: number) {
+    return {
+      maxHeight: this.activePosts.indexOf(postId) != -1 ? "none": "0"
+    }
+  }
 }
