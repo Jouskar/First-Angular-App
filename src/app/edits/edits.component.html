@@ -1,1 +1,13 @@
-<p>edits works!</p>
+<h2>Edit</h2>
+
+<form action="">
+<fieldset>
+    <legend>Postu Düzenle</legend>
+    <label>Başlık</label>
+    <input #pTitle name="ftitle" [value]="post.title" type="text">
+    <label>İçerik</label>
+    <textarea #pBody rows="10" cols="50" [value]="post.body"></textarea>
+    <input id="saveBtn" value="Kaydet" type="submit">
+    <input id="cancelBtn" value="Vazgeç" type="submit">
+    </fieldset>
+</form>

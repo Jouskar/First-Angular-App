@@ -1,27 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2, ElementRef } from '@angular/core';
 import { Post } from "../post";
-import { UsersComponent } from "../users/users.component";
 import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css'],
-  providers: [UsersComponent]
+  styleUrls: ['./posts.component.css']
 })
 export class PostsComponent{
   
-  isClicked: boolean;
   activePosts: number[] = [0];
   posts: Post[];
   msg:string;
 
-  constructor(private usersComponent: UsersComponent, private postsService: PostsService) {  }
+  constructor(private postsService: PostsService, private renderer: Renderer2, private elementRef: ElementRef) {  }
 
   ngOnInit(): void {
-    this.postsService.getPostObs().subscribe(posts => this.posts = posts);
-    this.isClicked = false;
-    this.postsService.currentMsg.subscribe(msg => this.msg = msg);  }
+    this.postsService.getPostObs().subscribe(posts => this.posts = posts); }
 
   activatePosts(postId: number): void {
     let postIndex = this.activePosts.indexOf(postId);
@@ -33,10 +28,16 @@ export class PostsComponent{
       this.activePosts.push(postId);
     }
   }
+
+  editPost(post: Post): void {    
+    this.postsService.editPost(post);
+  }
     
   setMaxHeight(postId: number) {
+    let parent = this.renderer.parentNode(this.elementRef.nativeElement);
+    let postBody = parent.querySelector(".active");
     return {
-      maxHeight: this.activePosts.indexOf(postId) != -1 ? "none": "0"
+      maxHeight: this.activePosts.indexOf(postId) != -1 ? postBody.scrollHeight+"px": "0"
     }
   }
 }

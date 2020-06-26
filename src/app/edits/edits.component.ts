@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from "../post";
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-edits',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditsComponent implements OnInit {
 
-  constructor() { }
+  post: Post;
 
+  constructor(private postsService: PostsService) { }
+  
   ngOnInit(): void {
+    this.postsService.editedPost.subscribe(post => this.post = post);
   }
 
+  saveChanges(title: string, body: string): void {
+    
+  }
 }

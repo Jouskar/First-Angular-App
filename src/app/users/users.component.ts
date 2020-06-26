@@ -19,17 +19,9 @@ export class UsersComponent {
 
   ngOnInit(): void {
     this.getUsers();
-    
-    this.postsService.currentMsg.subscribe(msg => this.msg = msg);
-    console.log(this.msg);
   }
 
-  changeMsg(): void {
-    this.postsService.changeMsg("deneme yeni");
-    console.log(this.msg);
-  }
   getAllPosts(): void {
-    //this.postsService.getPostObs().subscribe(posts => this.posts = posts);
     this.postsService.createData();
   }
 
