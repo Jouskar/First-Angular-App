@@ -1,13 +1,13 @@
-<h2>Edit</h2>
+<h2 *ngIf="selectedPost">Edit</h2>
 
-<form action="">
+<form *ngIf="selectedPost">
 <fieldset>
     <legend>Postu Düzenle</legend>
-    <label>Başlık</label>
-    <input #pTitle name="ftitle" [value]="post.title" type="text">
-    <label>İçerik</label>
-    <textarea #pBody rows="10" cols="50" [value]="post.body"></textarea>
-    <input id="saveBtn" value="Kaydet" type="submit">
-    <input id="cancelBtn" value="Vazgeç" type="submit">
+    <label>Başlık: </label>
+    <input #pTitle [value]="selectedPost.title" type="text"><br><br>
+    <label>İçerik: </label>
+    <textarea #pBody rows="10" cols="50" [value]="selectedPost.body"></textarea><br><br>
+    <button (click)="saveChanges(pTitle.value, pBody.value)">Kaydet</button>
+    <button (click)="cancelChanges()">Vazgeç</button>
     </fieldset>
 </form>

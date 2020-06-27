@@ -29,8 +29,8 @@ export class PostsComponent{
     }
   }
 
-  editPost(post: Post): void {    
-    this.postsService.editPost(post);
+  editPost(post: Post): void {
+    this.postsService.selectPost(post);
   }
     
   setMaxHeight(postId: number) {
