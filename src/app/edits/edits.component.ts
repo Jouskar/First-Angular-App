@@ -21,9 +21,8 @@ export class EditsComponent implements OnInit {
   }
 
   saveChanges(title: string, body: string): void {
-    const p = this.posts.find(post => post.id == this.selectedPost.id);
-    p.title = title;
-    p.body = body;
+    this.selectedPost.title = title;
+    this.selectedPost.body = body;
     this.postsService.updateData(this.posts);
   }
 
