@@ -27,6 +27,6 @@ export class EditsComponent implements OnInit {
   }
 
   cancelChanges(): void {    
-    this.postsService.updateData(this.posts);
+    this.postsService.cancelData();
   }
 }

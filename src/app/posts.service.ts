@@ -28,7 +28,11 @@ export class PostsService {
 
   updateData(posts: Post[]): void {
     this.postSource.next(posts);
-    this.selectedPostSource.next(null);
+    this.cancelData();
+  }
+
+  cancelData(): void {
+    this.selectedPostSource.next(null);    
   }
 
   createData() {
