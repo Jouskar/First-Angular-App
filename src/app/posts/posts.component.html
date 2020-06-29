@@ -2,7 +2,7 @@
 
 <div *ngFor="let post of posts">
     <button class="accordion" id="{{ post.id }}" [class.active]="activePosts.indexOf(post.id) != -1" 
-            (click)="activatePosts(post.id)">{{ post.title }}<span (click)="editPost(post)">edit</span></button>
+            (click)="activatePosts(post.id)">{{ post.title }}<span (click)="editPost(post)">düzenle</span></button>
     <div class="panel" [ngStyle]="setMaxHeight(post.id)">
         <p>{{ post.body }}</p>
     </div>
